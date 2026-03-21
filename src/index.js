@@ -17,7 +17,7 @@ app.get('/', async (c) => {
 app.get('/api/getMe', async (c) => {
 	let bot = getBot(c.env.TEST1_TOKEN);
 	let json = await bot.getMe()
-	console.error('我的信息', json)
+	console.log('test日志是否打印')
 	return Response.json(json)
 });
 
