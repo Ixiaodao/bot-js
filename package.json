@@ -4,7 +4,7 @@
 	"private": true,
 	"scripts": {
 		"deploy": "wrangler deploy",
-		"dev": "wrangler dev",
+		"dev": "wrangler dev --port 8080",
 		"start": "wrangler dev",
 		"test": "vitest"
 	},
@@ -14,6 +14,7 @@
 		"wrangler": "^4.75.0"
 	},
 	"dependencies": {
-		"grammy": "^1.41.1"
+		"grammy": "^1.41.1",
+		"hono": "^4.12.8"
 	}
 }

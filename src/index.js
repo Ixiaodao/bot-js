@@ -1,14 +1,29 @@
-/**
- * Welcome to Cloudflare Workers! This is your first worker.
- *
- * - Run `npm run dev` in your terminal to start a development server
- * - Open a browser tab at http://localhost:8787/ to see your worker in action
- * - Run `npm run deploy` to publish your worker
- *
- * Learn more at https://developers.cloudflare.com/workers/
- */
-export default {
-	async fetch(request, env, ctx) {
-		return new Response('Hello World!');
-	},
+import { Hono } from 'hono';
+import { Bot } from 'grammy';
+const app = new Hono();
+const getBot = (token) => {
+	return new Bot(token, {
+		client: {
+			apiRoot: "https://proxycf.cc.cd/https://api.telegram.org",
+		},
+	}).api;
 };
+
+// 健康检查
+app.get('/', async (c) => {
+	return c.text('ok...');
+});
+
+app.get('/api/getMe', async (c) => {
+	let bot = getBot(c.env.TEST1_TOKEN);
+	let json = await bot.getMe()
+	return Response.json(json)
+});
+
+// Webhook 处理
+app.post('/api/webhook', async (c) => {
+	let body = await c.req.json()
+	return Response.json({  })
+});
+
+export default app;
