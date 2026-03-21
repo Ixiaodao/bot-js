@@ -17,6 +17,7 @@ app.get('/', async (c) => {
 app.get('/api/getMe', async (c) => {
 	let bot = getBot(c.env.TEST1_TOKEN);
 	let json = await bot.getMe()
+	console.error('我的信息', json)
 	return Response.json(json)
 });
 
