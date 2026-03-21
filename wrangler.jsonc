@@ -8,7 +8,9 @@
 	"main": "src/index.js",
 	"compatibility_date": "2026-03-10",
 	"observability": {
-		"enabled": true
+		"enabled": true,
+		"head_sampling_rate": 1
+
 	},
 	"compatibility_flags": [
 		"nodejs_compat"
