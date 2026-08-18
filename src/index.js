@@ -6,7 +6,7 @@ const api = new Telegraf(process.env.TEST1_TOKEN)
 
 // 健康检查
 app.get('/', async (c) => {
-	return c.text('ok....');
+	return c.text('ok.....');
 });
 
 app.get('/api/getMe', async (c) => {
