@@ -9,7 +9,7 @@ app.get('/', async (c) => {
 	return c.text('ok...');
 });
 
-app.get('/getMe', async (c) => {
+app.get('/api/getMe', async (c) => {
 	const start = performance.now();
 	let me = await api.telegram.getMe()
 	const end = performance.now();
@@ -64,13 +64,6 @@ app.get('/api/logs', async (c) => {
 		console.error("查询失败:", e.message);
 		return c.json({ success: false, error: e.message }, 500);
 	}
-});
-
-
-app.get('/api/getMe', async (c) => {
-	let json = await bot.telegram.getMe()
-	console.log('test日志是否打印')
-	return Response.json(json)
 });
 
 // Webhook 处理
