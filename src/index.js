@@ -1,19 +1,24 @@
 import { Hono } from 'hono';
-import { Bot } from 'grammy';
+import { Telegraf } from 'telegraf';
+
 const app = new Hono();
-const getBot = (token) => {
-	return new Bot(token, {
-		client: {
-			apiRoot: "https://proxycf.cc.cd/https://api.telegram.org",
-		},
-	}).api;
-};
+const api = new Telegraf(process.env.TEST1_TOKEN)
 
 // 健康检查
 app.get('/', async (c) => {
 	return c.text('ok...');
 });
 
+app.get('/getMe', async (c) => {
+	const start = performance.now();
+	let me = await api.telegram.getMe()
+	const end = performance.now();
+	const duration = (end - start).toFixed(2); // 毫秒
+	return c.json({
+		'me': me,
+		'time': duration,
+	});
+});
 
 app.get('/api/testInsert', async (c) => {
 	try {
@@ -63,8 +68,7 @@ app.get('/api/logs', async (c) => {
 
 
 app.get('/api/getMe', async (c) => {
-	let bot = getBot(c.env.TEST1_TOKEN);
-	let json = await bot.getMe()
+	let json = await bot.telegram.getMe()
 	console.log('test日志是否打印')
 	return Response.json(json)
 });
