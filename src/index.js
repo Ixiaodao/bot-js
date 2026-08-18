@@ -2,7 +2,6 @@ import { Hono } from 'hono';
 import { Telegraf } from 'telegraf';
 
 const app = new Hono();
-const api = new Telegraf(process.env.TEST1_TOKEN)
 
 // 健康检查
 app.get('/', async (c) => {
@@ -10,14 +9,21 @@ app.get('/', async (c) => {
 });
 
 app.get('/api/getMe', async (c) => {
-	const start = performance.now();
-	let me = await api.telegram.getMe()
-	const end = performance.now();
-	const duration = (end - start).toFixed(2); // 毫秒
-	return c.json({
-		'me': me,
-		'time': duration,
-	});
+	try {
+		const api = new Telegraf(process.env.TEST1_TOKEN);
+
+		const start = performance.now();
+		let me = await api.telegram.getMe();
+		const end = performance.now();
+		const duration = (end - start).toFixed(2); // 毫秒
+		return c.json({
+			'me': me,
+			'time': duration,
+		});
+	} catch (e) {
+		console.error('异常', e)
+	}
+	return c.text('ok')
 });
 
 app.get('/api/testInsert', async (c) => {
