@@ -14,16 +14,16 @@
 	},
 	"compatibility_flags": [
 		"nodejs_compat"
-	],
-	"d1_databases": [
-    		{
-    			"binding": "DB", // 在代码中使用的变量名
-    			"database_name": "east",
-    			"database_id": "ba6d4561-95de-4afd-bf76-4d68eaf0fe34", // 远程数据库ID
-    			"preview_database_id": "local",
-    			"remote": true
-    		}
-    	]
+	]
+//	"d1_databases": [
+//    		{
+//    			"binding": "DB", // 在代码中使用的变量名
+//    			"database_name": "east",
+//    			"database_id": "ba6d4561-95de-4afd-bf76-4d68eaf0fe34", // 远程数据库ID
+//    			"preview_database_id": "local",
+//    			"remote": false
+//    		}
+//    	]
 	/**
 	 * Smart Placement
 	 * https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
