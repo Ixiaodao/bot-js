@@ -19,7 +19,7 @@ app.get('/', async (c) => {
 app.get('/api/getMe', async (c) => {
 	try {
 		const start = performance.now();
-		const api = getBot('6410140401:AAGu3aPu1t3f-atWn3sESdffEP7aQICeFxU');
+		const api = getBot(c.env.TEST1_TOKEN);
 		let me = await api.telegram.getMe();
 		const end = performance.now();
 		const duration = (end - start).toFixed(2); // 毫秒
